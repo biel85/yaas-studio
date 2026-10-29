@@ -1,0 +1,30 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Política de Privacidade — YAAS Studio</title>
+<style>
+body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0e1419;color:#e9eef3;margin:0}
+main{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:28px;margin:0 0 6px} h2{font-size:17px;margin:32px 0 8px;color:#fff}
+p,li{color:#b7c3cf} a{color:#7ec8ff} .muted{font-size:13px;color:#7c8b99}
+code{background:#1b242c;padding:1px 5px;border-radius:4px;font-size:13px}
+</style>
+<main><h1>Política de Privacidade</h1>
+<p class="muted">Última atualização: 29 de outubro de 2026</p>
+<h2>1. Quem somos</h2>
+<p>O <b>YAAS Studio</b> é uma aplicação desktop de código aberto (licença MIT) que roda localmente no computador do próprio usuário. Ela gera vídeos com inteligência artificial e permite publicá-los em contas de redes sociais que o usuário autoriza, como YouTube e TikTok.</p>
+<h2>2. Dados que tratamos</h2>
+<p>O YAAS Studio não possui servidor próprio e não coleta dados para terceiros. Tudo fica na máquina do usuário:</p>
+<ul>
+<li>Chaves de API e tokens de acesso (YouTube, TikTok) são gravados em arquivos locais (<code>.env</code>, <code>.tt_tokens.json</code>) na pasta da aplicação.</li>
+<li>Roteiros, imagens e vídeos gerados ficam em pastas locais do computador.</li>
+<li>Ao publicar, o conteúdo do vídeo e os metadados (título, descrição) são enviados diretamente às APIs oficiais do YouTube e do TikTok, em nome da conta autorizada pelo usuário.</li>
+</ul>
+<h2>3. Compartilhamento</h2>
+<p>Não vendemos, alugamos nem compartilhamos dados com terceiros. As únicas transmissões são para as APIs oficiais das plataformas escolhidas pelo usuário e para os provedores de IA/banco de imagens cujas chaves o próprio usuário configurar.</p>
+<h2>4. Segurança</h2>
+<p>As credenciais nunca saem do computador do usuário. O acesso ao TikTok é feito via OAuth 2.0 oficial; o usuário pode revogar a autorização a qualquer momento nas configurações da conta TikTok (Segurança e permissões &rarr; Apps gerenciados).</p>
+<h2>5. Direitos do usuário</h2>
+<p>Como os dados são locais, o usuário pode apagá-los a qualquer momento removendo os arquivos citados acima ou desinstalando a aplicação.</p>
+<h2>6. Contato</h2>
+<p>Dúvidas sobre privacidade: <a href="mailto:suporte@yaas.studio">suporte@yaas.studio</a></p>
+</main></html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YAAS Studio — YouTube Agentic AI Studio</title>
+<meta name="description" content="YAAS Studio is a local desktop app that generates short videos with AI and publishes them to the creator's own authorized YouTube and TikTok accounts.">
+<style>
+:root{--bg:#0e1419;--panel:#141d24;--line:#22303b;--fg:#e9eef3;--muted:#9fb0be;--accent:#7ec8ff}
+*{box-sizing:border-box}
+body{font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg);margin:0}
+main{max-width:860px;margin:0 auto;padding:56px 24px 80px}
+header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+img.icon{width:72px;height:72px;border-radius:16px;background:#1b242c}
+h1{font-size:30px;margin:0} h2{font-size:19px;margin:36px 0 10px;color:#fff}
+p,li{color:var(--muted)} a{color:var(--accent)}
+.lead{font-size:18px;color:#cdd8e2}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+code{background:#1b242c;padding:1px 5px;border-radius:4px;font-size:13px;color:#d6e2ec}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--muted);vertical-align:top}
+th{color:#fff;font-weight:600}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:#7c8b99}
+nav a{margin-right:16px}
+</style>
+<main>
+<header>
+  <img class="icon" src="icon.png" alt="YAAS Studio icon">
+  <div>
+    <h1>YAAS Studio</h1>
+    <p class="lead" style="margin:2px 0 0">YouTube Agentic AI Studio — open source (MIT)</p>
+  </div>
+</header>
+
+<p class="lead">YAAS Studio is a <b>local desktop application</b> that generates short-form videos with AI and publishes them to the creator's <b>own authorized accounts</b> on YouTube and TikTok. It runs entirely on the user's computer: there is no hosted backend and no third-party account is ever accessed.</p>
+
+<nav><a href="./privacy.html">Privacy Policy</a><a href="./terms.html">Terms of Service</a><a href="https://github.com/raunakpatil/youtube-agentic-ai-studio">Source code</a></nav>
+
+<h2>How it works</h2>
+<div class="card">
+<ol>
+  <li>The user runs the app locally and opens its web interface at <code>http://localhost:7071</code>.</li>
+  <li>The app generates a script, images and a video with the AI providers whose API keys the user configured (bring-your-own-key).</li>
+  <li>The user reviews the result in the <b>Review</b> screen and can regenerate or edit anything.</li>
+  <li>The user presses <b>Publish</b> for the platform they want. Nothing is ever uploaded without that explicit action.</li>
+</ol>
+</div>
+
+<h2>YouTube integration</h2>
+<p>Publishing uses the official <b>YouTube Data API v3</b> with OAuth 2.0. The app uploads only the video the user just generated and reviewed, with the title, description, tags and privacy status chosen by the user in the app, to the channel the user authorized. Refresh tokens are stored locally in the user's machine.</p>
+
+<h2>TikTok integration</h2>
+<p>The app uses <b>Login Kit</b> (scopes <code>user.info.basic</code>, <code>video.publish</code>) to obtain the creator's access token, and the <b>Content Posting API</b> to publish:</p>
+<table>
+<tr><th>Step</th><th>API call</th></tr>
+<tr><td>Read the authorized creator and available privacy levels</td><td><code>POST /v2/post/publish/creator_info/query/</code></td></tr>
+<tr><td>Initialize an upload for the reviewed video</td><td><code>POST /v2/post/publish/video/init/</code> with <code>source=FILE_UPLOAD</code></td></tr>
+<tr><td>Upload the file in chunks to the returned upload URL</td><td><code>PUT</code> to <code>upload_url</code></td></tr>
+<tr><td>Poll until the post is published</td><td><code>POST /v2/post/publish/status/fetch/</code></td></tr>
+</table>
+<ul>
+  <li>Only the creator's own account is used — the app never posts on behalf of third parties.</li>
+  <li>Each publish is triggered by a single user click on the video the user generated and approved in the app.</li>
+  <li>The privacy level is selected by the user among the options returned by TikTok; unaudited clients are limited to private (<code>SELF_ONLY</code>) posts.</li>
+  <li>No content is scraped, downloaded or reposted from TikTok, and no automated engagement is performed.</li>
+</ul>
+
+<h2>Requirements</h2>
+<p>Windows, macOS or Linux, Python 3.12, and API keys that the user creates in their own developer accounts. The app is distributed as source code under the MIT license.</p>
+
+<h2>Contact</h2>
+<p>Support and privacy questions: <a href="mailto:suporte@yaas.studio">suporte@yaas.studio</a></p>
+
+<footer>
+YAAS Studio — based on the MIT-licensed <a href="https://github.com/raunakpatil/youtube-agentic-ai-studio">youtube-agentic-ai-studio</a> project. TikTok and YouTube are trademarks of their respective owners; this project is not affiliated with either platform.
+</footer>
+</main>
+</html>
